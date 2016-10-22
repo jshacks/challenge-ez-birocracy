@@ -29,7 +29,16 @@
   </form>
 </div>
 -->
-
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6 col-xs-12">
+            <div ng-include="'app/main/options/options.html'"></div>
+        </div>
+        <div ng-show="showMap" class="col-md-6 col-xs-12">
+            <div ng-include="'app/main/map/map.html'"></div>
+        </div>
+    </div>
+</div>
 <footer class="footer">
   <div class="container">
       <p>Angular Fullstack v2.0.13 |
