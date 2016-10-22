@@ -62,7 +62,6 @@ angular.module('jsHaksApp')
     }
 
     function callback(results, status) {
-      debugger;
       if (status == google.maps.places.PlacesServiceStatus.OK) {
         for (var i = 0; i < results.length; i++) {
           var place = results[i];
