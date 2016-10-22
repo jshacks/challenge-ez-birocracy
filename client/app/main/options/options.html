@@ -1,14 +1,7 @@
 <section ng-controller="OptionsCtrl as vm">
     <h1>Options</h1>
-    <ui-select ng-model="vm.document.selected"
-             theme="bootstrap"
-             reset-search-input="false"
-             style="width: 300px;"
-             title="Alege optiunea">
-    <ui-select-match placeholder="Introduce documentul...">{{$select.selected.name}}</ui-select-match>
-    <ui-select-choices repeat="document in vm.documents track by $index">
-      <div ng-bind-html="document.name | highlight: $select.search"></div>
-    </ui-select-choices>
-  </ui-select>
+
+
+
     <button ng-click="$parent.showMap = !$parent.showMap">CLICK</button>
 </section>

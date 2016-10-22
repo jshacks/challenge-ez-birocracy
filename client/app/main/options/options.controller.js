@@ -5,6 +5,7 @@ angular.module('jsHaksApp')
     var vm = this;
 
     vm.document = {};
+    vm.document.selected = {};
     vm.documents = OptionsService.getDocumentOptions();
     console.log('documents', vm.documents);
     ////////
