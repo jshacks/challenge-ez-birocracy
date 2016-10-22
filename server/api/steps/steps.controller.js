@@ -3,11 +3,11 @@
 var _ = require('lodash');
 var Steps = require('./steps.model');
 
-// Get list of stepss
+// Get list of steps
 exports.index = function(req, res) {
-  Steps.find(function (err, stepss) {
+  Steps.find(function (err, steps) {
     if(err) { return handleError(res, err); }
-    return res.json(200, stepss);
+    return res.json(200, steps);
   });
 };
 

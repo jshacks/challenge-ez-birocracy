@@ -3,11 +3,11 @@
 var _ = require('lodash');
 var Documents = require('./documents.model');
 
-// Get list of documentss
+// Get list of documents
 exports.index = function(req, res) {
-  Documents.find(function (err, documentss) {
+  Documents.find(function (err, documents) {
     if(err) { return handleError(res, err); }
-    return res.json(200, documentss);
+    return res.json(200, documents);
   });
 };
 
