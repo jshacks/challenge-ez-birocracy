@@ -4,8 +4,10 @@ angular.module('jsHaksApp')
   .controller('OptionsCtrl', function ($scope, $http, socket, OptionsService) {
     var vm = this;
 
-    vm.test = OptionsService.getDocumentOptions();
+    vm.document = {};
+    vm.documents = OptionsService.getDocumentOptions();
+    console.log('documents', vm.documents);
+    ////////
 
-    vm.documents;
-    vm.documents.selected;
+
   });

@@ -1,15 +1,13 @@
 <section ng-controller="OptionsCtrl as vm">
-    <h1>Options {{vm.test}}</h1>
-    <ui-select ng-model="vm.documents.selected"
+    <h1>Options</h1>
+    <ui-select ng-model="vm.document.selected"
              theme="bootstrap"
              reset-search-input="false"
              style="width: 300px;"
              title="Alege optiunea">
-    <ui-select-match placeholder="Introduce documentul...">{{$select.selected.formatted_address}}</ui-select-match>
-    <ui-select-choices repeat="address in ctrl.addresses track by $index"
-             refresh="refreshAddresses($select.search)"
-             refresh-delay="0">
-      <div ng-bind-html="address.formatted_address | highlight: $select.search"></div>
+    <ui-select-match placeholder="Introduce documentul...">{{$select.selected.name}}</ui-select-match>
+    <ui-select-choices repeat="document in vm.documents track by $index">
+      <div ng-bind-html="document.name | highlight: $select.search"></div>
     </ui-select-choices>
   </ui-select>
     <button ng-click="$parent.showMap = !$parent.showMap">CLICK</button>
