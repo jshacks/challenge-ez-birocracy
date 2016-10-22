@@ -40,7 +40,7 @@
                             <ui-select-match placeholder="Selecteaza documentul..">{{$select.selected.name}}</ui-select-match>
                             <ui-select-choices repeat="document in documents | filter: $select.search">
                                 <span ng-bind-html="document.name | highlight: $select.search"></span>
-                                <small ng-bind-html="document.code | highlight: $select.search"></small>
+                                <small ng-bind-html="document.info | highlight: $select.search"></small>
                             </ui-select-choices>
                         </ui-select>
                         <span class="input-group-btn">
