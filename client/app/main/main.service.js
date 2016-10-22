@@ -4,7 +4,7 @@ angular
     .module('jsHaksApp')
   .factory('mainService', mainService);
 
-function mainService() {
+function mainService(localStorageService) {
      var documentsMock = [
         {
             name: 'Cazier',
@@ -48,17 +48,27 @@ function mainService() {
     ];
 
     var service = {
-        getDocumentOptions: getDocumentOptions
+        getDocumentOptions: getDocumentOptions,
+        getLocalDetails: getLocalDetails,
+        setLocalDetails: setLocalDetails
     };
 
     return service;
 
 
+    function getLocalDetails() {
+        return localStorageService.get('documents');
+    }
 
+    function setLocalDetails(documents) {
+        localStorageService.set('documents', documents);
+    }
     ////////////
 
     function getDocumentOptions() {
+        this.setLocalDetails(documentsMock);
         return documentsMock;
+
     }
 
 }

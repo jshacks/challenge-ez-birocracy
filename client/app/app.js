@@ -7,13 +7,16 @@ angular.module('jsHaksApp', [
   'ngRoute',
   'btford.socket-io',
   'ui.bootstrap',
-    'ui.select'
+    'ui.select',
+    'LocalStorageModule'
 ])
-  .config(function ($routeProvider, $locationProvider, $httpProvider) {
+  .config(function ($routeProvider, $locationProvider, $httpProvider, localStorageServiceProvider) {
     $routeProvider
       .otherwise({
         redirectTo: '/'
       });
+
+    localStorageServiceProvider.setPrefix('ez');
 
     $locationProvider.html5Mode(true);
     $httpProvider.interceptors.push('authInterceptor');
