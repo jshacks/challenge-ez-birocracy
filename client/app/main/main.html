@@ -27,16 +27,12 @@
         </div>
     </div>
 </div>
-<div ng-show="document.selected" class="container">
+<div ng-if="document.selected" class="container">
     <div class="row">
         <div class="col-md-6 col-xs-12">
             <div ng-include="'app/main/checkpoints/checkpoints.html'"></div>
         </div>
-<<<<<<< HEAD
-        <div ng-show="true" class="col-md-6 col-xs-12">
-=======
         <div class="col-md-6 col-xs-12">
->>>>>>> origin/master
             <div ng-include="'app/main/map/map.html'"></div>
         </div>
     </div>

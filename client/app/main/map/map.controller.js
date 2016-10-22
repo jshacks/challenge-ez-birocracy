@@ -8,14 +8,13 @@ angular.module('jsHaksApp')
     var directionsService = new google.maps.DirectionsService;
     var directionsDisplay = new google.maps.DirectionsRenderer;
 
-    function initialize() {
+    vm.initialize = function(){
       geocoder = new google.maps.Geocoder();
 
       var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 7,
+        zoom: 12,
         center: new google.maps.LatLng(44.4482678, 26.0452267),
       });
       directionsDisplay.setMap(map);
     }
-    initialize();
   });
