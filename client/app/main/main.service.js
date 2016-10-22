@@ -6,12 +6,45 @@ angular
 
 function mainService() {
      var documentsMock = [
-        {name: 'Afghanistan', code: 'AF'},
-        {name: 'Åland Islands', code: 'AX'},
-        {name: 'Albania', code: 'AL'},
-        {name: 'Algeria', code: 'DZ'},
-        {name: 'American Samoa', code: 'AS'},
-        {name: 'Andorra', code: 'AD'}
+        {
+            name: 'Cazier',
+            label: 'Elibarare Cazier',
+            documents: [
+                {
+                    name: 'Act de identitate',
+                    info: 'CI/BI/PASAPORT',
+                    location: []
+                },
+                {
+                    name: 'Chitanta',
+                    info: 'Chitanta eliberata pentru plata serviciului in valoare de 10 RON',
+                    location: [
+                        {
+                            name: 'Trezorerie',
+                            type: 'Trezorerie'
+                        },
+                        {
+                            name: 'Posta Romana',
+                            type: 'post_office'
+                        }
+                    ]
+                },
+                {
+                    name: 'Cerere tip',
+                    info: 'Cerere pentru eliberarea cazierului',
+                    location: [
+                        {
+                            name: 'Sectia de politie',
+                            type: 'police'
+                        },
+                        {
+                            name: 'Online',
+                            type: 'download'
+                        }
+                    ]
+                }
+            ]
+        }
     ];
 
     var service = {
