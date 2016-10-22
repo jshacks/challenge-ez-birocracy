@@ -1,12 +1,14 @@
 'use strict';
 
 var mongoose = require('mongoose'),
-    Schema = mongoose.Schema;
+  Schema = mongoose.Schema;
+
+var Locations = require('../locations/locations.model');
 
 var DocumentsSchema = new Schema({
   name: String,
   info: String,
-  active: Boolean
+  location: [Locations]
 });
 
 module.exports = mongoose.model('Documents', DocumentsSchema);

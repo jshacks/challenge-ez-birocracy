@@ -1,22 +1,24 @@
 'use strict';
 
 angular.module('jsHaksApp')
-  .controller('mapCtrl', function ($scope, $http, $window) {
+  .controller('mapCtrl', function ($scope, $http, $window, mainService) {
     var vm = this;
     var map;
-    var geocoder;
+    var startingMarker;
+    var service;
     var directionsService = new google.maps.DirectionsService;
     var directionsDisplay = new google.maps.DirectionsRenderer;
+    var request = {radius: '1000'};
 
     vm.initialize = function(){
-      geocoder = new google.maps.Geocoder();
-
       var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 12,
         center: new google.maps.LatLng(44.4482678, 26.0452267),
       });
 
-      var infoWindow = new google.maps.InfoWindow({map: map});
+      startingMarker = new google.maps.Marker({
+        title:"Start point"
+      });
 
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
@@ -25,24 +27,46 @@ angular.module('jsHaksApp')
             lng: position.coords.longitude
           };
 
-          infoWindow.setPosition(pos);
-          infoWindow.setContent('Location found.');
+          startingMarker.setPosition(pos);
           map.setCenter(pos);
+          startingMarker.setMap(map);
+
+          request.location =  {lat: startingMarker.getPosition().lat(), lng: startingMarker.getPosition().lng()};
+          request.type = 'post_office';
+
+          service = new google.maps.places.PlacesService(map);
+          service.nearbySearch(request, callback);
+
         }, function() {
-          handleLocationError(true, infoWindow, map.getCenter());
+          handleLocationError(true, startingMarker, map.getCenter());
         });
       } else {
         // Browser doesn't support Geolocation
-        handleLocationError(false, infoWindow, map.getCenter());
+        handleLocationError(false, startingMarker, map.getCenter());
       }
 
-      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-        infoWindow.setPosition(pos);
-        infoWindow.setContent(browserHasGeolocation ?
+      function handleLocationError(browserHasGeolocation, startingMarker, pos) {
+        startingMarker.setPosition(pos);
+        startingMarker.setContent(browserHasGeolocation ?
           'Error: The Geolocation service failed.' :
           'Error: Your browser doesn\'t support geolocation.');
       }
 
-      directionsDisplay.setMap(map);
+      google.maps.event.addListener(map, 'click', function(event) {
+        startingMarker.setPosition(event.latLng);
+        request.location =  {lat: startingMarker.getPosition().lat(), lng: startingMarker.getPosition().lng()};
+        request.type = 'post_office';
+        service = new google.maps.places.PlacesService(map);
+        service.nearbySearch(request, callback);
+      });
+    }
+
+    function callback(results, status) {
+      debugger;
+      if (status == google.maps.places.PlacesServiceStatus.OK) {
+        for (var i = 0; i < results.length; i++) {
+          var place = results[i];
+        }
+      }
     }
   });
