@@ -22,7 +22,7 @@ function mainService(localStorageService) {
                     location: [
                         {
                             name: 'Trezorerie',
-                            type: 'Trezorerie'
+                            type: ''
                         },
                         {
                             name: 'Posta Romana',
@@ -41,7 +41,7 @@ function mainService(localStorageService) {
                         },
                         {
                             name: 'Online',
-                            type: 'download'
+                            type: ''
                         }
                     ],
                     completed: false
