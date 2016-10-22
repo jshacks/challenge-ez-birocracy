@@ -8,6 +8,7 @@ angular.module('jsHaksApp', [
   'btford.socket-io',
   'ui.bootstrap',
     'ui.select',
+    'ngAnimate',
     'LocalStorageModule'
 ])
   .config(function ($routeProvider, $locationProvider, $httpProvider, localStorageServiceProvider) {

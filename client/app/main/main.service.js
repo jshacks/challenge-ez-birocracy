@@ -13,7 +13,8 @@ function mainService(localStorageService) {
                 {
                     name: 'Act de identitate',
                     info: 'CI/BI/PASAPORT',
-                    location: []
+                    location: [],
+                    completed: true
                 },
                 {
                     name: 'Chitanta',
@@ -27,7 +28,8 @@ function mainService(localStorageService) {
                             name: 'Posta Romana',
                             type: 'post_office'
                         }
-                    ]
+                    ],
+                    completed: false
                 },
                 {
                     name: 'Cerere tip',
@@ -41,7 +43,8 @@ function mainService(localStorageService) {
                             name: 'Online',
                             type: 'download'
                         }
-                    ]
+                    ],
+                    completed: false
                 }
             ]
         }
