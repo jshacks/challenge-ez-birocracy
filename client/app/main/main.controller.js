@@ -48,7 +48,28 @@ angular.module('jsHaksApp')
           templateUrl: 'app/main/main.modal.html',
           size: 'sm',
           controller: function($scope) {
-            $scope.name = 'bottom';
+            $scope.selectTransport = selectTransport;
+            $scope.transport = [
+                {
+                    label: 'Mers',
+                    type: 'WALKING'
+                },
+                {
+                    label: 'Masina',
+                    type: 'DRIVING'
+                },
+
+                {
+                    label: 'Bicicleta',
+                    type: 'BICYCLING'
+                },
+            ]
+            ////////
+
+            function selectTransport (type) {
+                mainService.setTransportType(type);
+                console.log('tip',mainService.getTransportType('transportType'));
+            }
           }
         });
         modalInstance.result.then(function () {

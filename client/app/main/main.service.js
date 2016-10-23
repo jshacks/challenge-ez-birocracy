@@ -58,12 +58,21 @@ function mainService(localStorageService) {
     var service = {
         getDocumentOptions: getDocumentOptions,
         getLocalDetails: getLocalDetails,
-        setLocalDetails: setLocalDetails
+        setLocalDetails: setLocalDetails,
+        getTransportType: getTransportType,
+        setTransportType: setTransportType
+
     };
 
     return service;
+    ////////////
 
-
+    function getTransportType() {
+        return localStorageService.get('transportType');
+    }
+    function setTransportType(type) {
+        localStorageService.set('transportType', type);
+    }
     function getLocalDetails() {
         return localStorageService.get('documents');
     }
@@ -71,7 +80,6 @@ function mainService(localStorageService) {
     function setLocalDetails(documents) {
         localStorageService.set('documents', documents);
     }
-    ////////////
 
     function getDocumentOptions() {
         this.setLocalDetails(documentsMock);
