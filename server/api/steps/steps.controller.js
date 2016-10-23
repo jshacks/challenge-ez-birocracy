@@ -5,10 +5,14 @@ var Steps = require('./steps.model');
 
 // Get list of steps
 exports.index = function(req, res) {
-  Steps.find(function (err, steps) {
-    if(err) { return handleError(res, err); }
-    return res.json(200, steps);
-  });
+  Steps.find()
+    .populate('location')
+    .exec(function (err, steps) {
+      if (err) {
+        return handleError(res, err);
+      }
+      return res.json(200, steps);
+    });
 };
 
 // Get a single steps

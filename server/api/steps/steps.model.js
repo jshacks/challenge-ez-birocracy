@@ -3,7 +3,7 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
-var Locations = require('../locations/locations.model')
+var Locations = require('../locations/locations.model');
 
 var StepsSchema = new Schema({
   name: String,
