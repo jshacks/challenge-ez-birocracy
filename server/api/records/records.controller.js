@@ -7,7 +7,9 @@ var Records = require('./records.model');
 exports.index = function(req, res) {
   Records.find()
     .populate('documents')
+    .populate('documents.location')
     .populate('steps')
+    .populate('steps.location')
     .exec(function (err, records) {
       if (err) {
         return handleError(res, err);
