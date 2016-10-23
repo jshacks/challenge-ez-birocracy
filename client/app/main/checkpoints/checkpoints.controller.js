@@ -13,12 +13,8 @@ angular.module('jsHaksApp')
         checkPoint.completed = true;
     }
 
-<<<<<<< HEAD
-=======
     $timeout (function () {
       $scope.showSpinner = true;
     }, 800);
 
-
->>>>>>> origin/master
   });
