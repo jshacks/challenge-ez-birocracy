@@ -17,7 +17,9 @@ exports.index = function(req, res) {
 
 // Get a single steps
 exports.show = function(req, res) {
-  Steps.findById(req.params.id, function (err, steps) {
+  Steps.findById(req.params.id)
+    .populate('location')
+    .exec(function (err, steps) {
     if(err) { return handleError(res, err); }
     if(!steps) { return res.send(404); }
     return res.json(steps);
