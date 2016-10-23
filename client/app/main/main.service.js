@@ -39,7 +39,19 @@ function mainService(localStorageService) {
                     completed: false
                 }
             ]
-        }
+        },
+       {
+         name: 'buletin',
+         label: 'Eliberare Cazier'
+       },
+       {
+         name: 'Permis',
+         label: 'Eliberare permis'
+       },
+       {
+         name: 'Pasaport',
+         label: 'Eliberare pasaport'
+       }
     ];
 
     var service = {
