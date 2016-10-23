@@ -8,81 +8,15 @@
 var Thing = require('../api/thing/thing.model');
 var User = require('../api/user/user.model');
 var Record = require('../api/records/records.model');
-var Document = require('../api/documents/documents.model');
-var Location = require('../api/locations/locations.model');
-var Step = require('../api/steps/steps.model');
-
-// var treasury = Location.create({
-//   name: 'Trezorerie',
-//   type: 'treasury'
-// });
-//
-// var post_office = Location.create({
-//   name: 'Posta Romana',
-//   type: 'post_office'
-// });
-//
-// var police = Location.create({
-//   name: 'Sectia de politie',
-//   type: 'police'
-// });
-//
-// var online = Location.constructor({
-//   name: 'Online',
-//   type: 'online'
-// });
-//
-// var id = Document.constructor({
-//   name: 'Act de identitate',
-//   info: 'Carte de identitate/Buletin de identitate/Pasaport',
-//   location: []
-// });
-//
-// var receipt = Document.constructor({
-//   name: 'Chitanta',
-//   info: 'Chitanta eliberata pentru plata serviciului in valoare de 10 lei',
-//   location: [
-//     treasury,
-//     post_office
-//   ]
-// });
-//
-// var application_form = Document.constructor({
-//   name: 'Cerere tip',
-//   info: 'Cerere tip completata cu datele personale si motiv pentru eliberarea actului necesar',
-//   location: [
-//     online,
-//     police
-//   ]
-// });
-//
-// var step1 = Step.constructor({
-//   name: 'payment',
-//   info: 'Plata serviciului in valoare de 10 lei si obtinerea chitantei.',
-//   completed: false,
-//   location: [
-//     treasury,
-//     post_office
-//   ]
-// });
-//
-// var step2 = Step.constructor({
-//   name: 'form',
-//   info: 'Predarea actelor necesare pentru obtinerea actului necesar',
-//   completed: false,
-//   location: [
-//     police
-//   ]
-// });
+var CreateDocuments = require('./create_documents');
+var CreateSteps = require('./create_steps');
 
 Record.find({}).remove(function () {
   Record.create({
       name: 'Cazier',
       label: 'Eliberare cazier',
-      steps: [
-        step1,
-        step2
-      ]
+      documents: [CreateDocuments.id._id, CreateDocuments.receipt._id, CreateDocuments.application_form._id],
+      steps: [CreateSteps.step1._id, CreateSteps.step2._id]
     }, function (err, res) {
       if (err) {
         console.log(res, err);
