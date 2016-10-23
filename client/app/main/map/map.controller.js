@@ -34,11 +34,29 @@ angular.module('jsHaksApp')
           map.setCenter(pos);
           startingMarker.setMap(map);
 
-       /*   request.location =  {lat: startingMarker.getPosition().lat(), lng: startingMarker.getPosition().lng()};
-          request.type = 'post_office';
+          vm.checkpoints=[];
+          var waypointType = docs[1].location[0].type;
 
+          request.location =  {lat: startingMarker.getPosition().lat(), lng: startingMarker.getPosition().lng()};
+          request.type = waypointType;
           service = new google.maps.places.PlacesService(map);
-          service.nearbySearch(request, callback);*/
+          service.nearbySearch(request, function(results,status){
+            if (status == google.maps.places.PlacesServiceStatus.OK) {
+              if(results.length > 0){
+                vm.checkpoints.push(results[0]);
+
+                request.location =  {lat: vm.checkpoints[0].geometry.location.lat(), lng: vm.checkpoints[0].geometry.location.lng()};
+                request.type = docs[2].location[0].type;
+                service = new google.maps.places.PlacesService(map);
+                service.nearbySearch(request, function(results,status){
+                  if (status == google.maps.places.PlacesServiceStatus.OK) {
+                    vm.checkpoints.push(results[0]);
+                    calculateAndDisplayRoute(directionsService,directionsDisplay, vm.checkpoints);
+                  }
+                });
+              }
+            }
+          });
 
         }, function() {
           handleLocationError(true, startingMarker, map.getCenter());
