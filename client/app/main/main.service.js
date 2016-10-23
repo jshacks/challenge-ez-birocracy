@@ -42,7 +42,7 @@ function mainService(localStorageService) {
             ]
         },
        {
-         name: 'buletin',
+         name: 'Buletin',
          label: 'Eliberare Cazier'
        },
        {
