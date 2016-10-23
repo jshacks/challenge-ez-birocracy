@@ -1,7 +1,7 @@
 <section ng-controller="CheckpointsCtrl as vm">
     <h1>Checkpoint list</h1>
    <accordion close-others="oneAtATime">
-    <div ng-repeat="checkPoint in vm.documentDetails[0].documents" accordion-group ng-class="checkPoint.completed ? 'panel-success':'panel-info'" isOpen='!checkpoint.completed'>
+    <div style="cursor: pointer" ng-repeat="checkPoint in vm.documentDetails[0].documents" accordion-group ng-class="checkPoint.completed ? 'panel-success':'panel-info'" isOpen='!checkpoint.completed'>
       <accordion-heading>
         {{checkPoint.name}} <i class="pull-right glyphicon" ng-class="checkPoint.completed ? 'glyphicon glyphicon-ok':'glyphicon glyphicon-remove'"></i>
       </accordion-heading>
