@@ -9,6 +9,8 @@ angular.module('jsHaksApp')
     var directionsService = new google.maps.DirectionsService;
     var directionsDisplay = new google.maps.DirectionsRenderer;
     var request = {radius: '1000'};
+    var docs = mainService.getLocalDetails()[0].documents;
+    var checkpoints = [];
 
     vm.initialize = function(){
       var map = new google.maps.Map(document.getElementById('map'), {
@@ -54,8 +56,11 @@ angular.module('jsHaksApp')
 
       google.maps.event.addListener(map, 'click', function(event) {
         startingMarker.setPosition(event.latLng);
+        checkpoints=[];
+        var waypointType = docs[1].location[0].type;
+
         request.location =  {lat: startingMarker.getPosition().lat(), lng: startingMarker.getPosition().lng()};
-        request.type = 'post_office';
+        request.type = waypointType;
         service = new google.maps.places.PlacesService(map);
         service.nearbySearch(request, callback);
       });
@@ -63,9 +68,20 @@ angular.module('jsHaksApp')
 
     function callback(results, status) {
       if (status == google.maps.places.PlacesServiceStatus.OK) {
-        for (var i = 0; i < results.length; i++) {
-          var place = results[i];
-        }
+          if(results.length > 0){
+            checkpoints.push(results[0]);
+
+            request.location =  {lat: checkpoints[0].geometry.location.lat(), lng: checkpoints[0].geometry.location.lng()};
+            request.type = docs[2].location[0].type;
+            service = new google.maps.places.PlacesService(map);
+            service.nearbySearch(request, pushCheckpoint);
+          }
+      }
+    }
+
+    function pushCheckpoint(results, status){
+      if (status == google.maps.places.PlacesServiceStatus.OK) {
+        checkpoints.push(results[0]);
       }
     }
   });

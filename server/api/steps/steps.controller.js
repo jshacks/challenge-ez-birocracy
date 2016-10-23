@@ -5,15 +5,21 @@ var Steps = require('./steps.model');
 
 // Get list of steps
 exports.index = function(req, res) {
-  Steps.find(function (err, steps) {
-    if(err) { return handleError(res, err); }
-    return res.json(200, steps);
-  });
+  Steps.find()
+    .populate('location')
+    .exec(function (err, steps) {
+      if (err) {
+        return handleError(res, err);
+      }
+      return res.json(200, steps);
+    });
 };
 
 // Get a single steps
 exports.show = function(req, res) {
-  Steps.findById(req.params.id, function (err, steps) {
+  Steps.findById(req.params.id)
+    .populate('location')
+    .exec(function (err, steps) {
     if(err) { return handleError(res, err); }
     if(!steps) { return res.send(404); }
     return res.json(steps);

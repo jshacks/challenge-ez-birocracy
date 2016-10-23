@@ -8,7 +8,7 @@ function mainService(localStorageService) {
      var documentsMock = [
         {
             name: 'Cazier',
-            label: 'Elibarare Cazier',
+            label: 'Eliberare Cazier',
             documents: [
                 {
                     name: 'Act de identitate',
@@ -20,10 +20,6 @@ function mainService(localStorageService) {
                     name: 'Chitanta',
                     info: 'Chitanta eliberata pentru plata serviciului in valoare de 10 RON',
                     location: [
-                        {
-                            name: 'Trezorerie',
-                            type: ''
-                        },
                         {
                             name: 'Posta Romana',
                             type: 'post_office'
@@ -38,10 +34,6 @@ function mainService(localStorageService) {
                         {
                             name: 'Sectia de politie',
                             type: 'police'
-                        },
-                        {
-                            name: 'Online',
-                            type: ''
                         }
                     ],
                     completed: false
