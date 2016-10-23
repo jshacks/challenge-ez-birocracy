@@ -1,7 +1,7 @@
 <section ng-controller="CheckpointsCtrl as vm">
   <div class="loading" ng-if="!showSpinner">Loading&#8230;</div>
 
-    <h1>Checkpoint list</h1>
+    <h1>Pasi</h1>
    <accordion close-others="oneAtATime">
     <div style="cursor: pointer" ng-repeat="checkPoint in vm.documentDetails[0].documents" accordion-group ng-class="checkPoint.completed ? 'panel-success':'panel-info'" isOpen='!checkpoint.completed'>
       <accordion-heading>
@@ -13,3 +13,4 @@
     </div>
   </accordion>
 </section>
+`
