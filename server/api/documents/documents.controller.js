@@ -7,7 +7,7 @@ var Documents = require('./documents.model');
 exports.index = function (req, res) {
   Documents.find()
     .populate('location')
-    .exec(function (error, documents) {
+    .exec(function (err, documents) {
       if (err) {
         return handleError(res, err);
       }
