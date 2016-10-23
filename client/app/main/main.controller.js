@@ -64,6 +64,7 @@ angular.module('jsHaksApp')
                     type: 'BICYCLING'
                 },
             ]
+            mainService.setTransportType($scope.transport[0]);
             ////////
 
             function selectTransport (type) {
