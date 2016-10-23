@@ -5,10 +5,15 @@ var Records = require('./records.model');
 
 // Get list of records
 exports.index = function(req, res) {
-  Records.find(function (err, records) {
-    if(err) { return handleError(res, err); }
-    return res.json(200, records);
-  });
+  Records.find()
+    .populate('documents')
+    .populate('steps')
+    .exec(function (err, records) {
+      if (err) {
+        return handleError(res, err);
+      }
+      return res.json(200, records);
+    });
 };
 
 // Get a single records

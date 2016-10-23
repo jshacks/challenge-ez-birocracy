@@ -9,8 +9,18 @@ var Steps = require('../steps/steps.model');
 var RecordsSchema = new Schema({
   name: String,
   label: String,
-  documents: [Documents],
-  steps: [Steps]
+  documents: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Documents'
+      }
+    ],
+  steps: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Steps'
+    }
+  ]
 });
 
 module.exports = mongoose.model('Records', RecordsSchema);
