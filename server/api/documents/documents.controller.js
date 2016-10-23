@@ -5,10 +5,14 @@ var Documents = require('./documents.model');
 
 // Get list of documents
 exports.index = function(req, res) {
-  Documents.find(function (err, documents) {
-    if(err) { return handleError(res, err); }
-    return res.json(200, documents);
-  });
+  Documents.find()
+    .populate('location')
+    .exec(function (error, documents) {
+      if (err) {
+        return handleError(res, err);
+      }
+      return res.json(200, documents);
+    });
 };
 
 // Get a single documents

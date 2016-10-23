@@ -8,7 +8,12 @@ var Locations = require('../locations/locations.model');
 var DocumentsSchema = new Schema({
   name: String,
   info: String,
-  location: [Locations]
+  location: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Locations'
+    }
+  ]
 });
 
 module.exports = mongoose.model('Documents', DocumentsSchema);
