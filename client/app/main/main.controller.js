@@ -57,12 +57,7 @@ angular.module('jsHaksApp')
                 {
                     label: 'Masina',
                     type: 'DRIVING'
-                },
-
-                {
-                    label: 'Bicicleta',
-                    type: 'BICYCLING'
-                },
+                }
             ]
             mainService.setTransportType($scope.transport[0]);
             ////////
