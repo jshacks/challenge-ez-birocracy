@@ -103,6 +103,7 @@ angular.module('jsHaksApp')
 
     function calculateAndDisplayRoute(directionsService, directionsDisplay, checkpoints) {
       var waypoints = [];
+      var transportType = mainService.getTransportType().type;
       var waypoint = new google.maps.LatLng(checkpoints[0].geometry.location.lat(),checkpoints[0].geometry.location.lng());
       waypoints.push({
         location: waypoint,
@@ -112,7 +113,7 @@ angular.module('jsHaksApp')
         origin: new google.maps.LatLng(startingMarker.getPosition().lat(),startingMarker.getPosition().lng()),
         waypoints: waypoints,
         destination: new google.maps.LatLng(checkpoints[1].geometry.location.lat(), checkpoints[1].geometry.location.lng()),
-        travelMode: 'DRIVING'
+        travelMode: transportType
       }, function(response, status) {
         if (status === 'OK') {
           directionsDisplay.setDirections(response);
