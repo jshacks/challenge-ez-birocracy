@@ -8,6 +8,7 @@ function mainService(localStorageService) {
      var documentsMock = [
         {
             name: 'Cazier',
+            active: true,
             label: 'Eliberare Cazier',
             documents: [
                 {
