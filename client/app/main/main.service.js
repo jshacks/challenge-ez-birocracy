@@ -8,6 +8,7 @@ function mainService(localStorageService) {
      var documentsMock = [
         {
             name: 'Cazier',
+            active: true,
             label: 'Eliberare Cazier',
             documents: [
                 {
@@ -39,7 +40,13 @@ function mainService(localStorageService) {
                     completed: false
                 }
             ]
-        }
+        },
+       {
+          name: 'Buletin (unavailable)',
+          active: false,
+          label: 'Eliberare buletin',
+          documents: []
+       }
     ];
 
     var service = {
