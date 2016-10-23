@@ -1,10 +1,10 @@
 'use strict';
 
 angular.module('jsHaksApp')
-  .controller('MainCtrl', function ($scope, $http, socket, mainService) {
+  .controller('MainCtrl', function ($scope, $http, socket, mainService, $modal) {
     $scope.awesomeThings = [];
     $scope.details = false;
-    $scope.generate = generate;
+    $scope.openModal = openModal;
 
     $http.get('/api/things').success(function(awesomeThings) {
       $scope.awesomeThings = awesomeThings;
@@ -28,13 +28,34 @@ angular.module('jsHaksApp')
     });
 
     $scope.document = {};
+    $scope.document.selected = {};
     $scope.documents = mainService.getDocumentOptions();
 
+    $scope.$watch('document.selected', function(newValue, oldValue){
+        console.log(newValue, oldValue);
+        if(newValue != oldValue) {
+            openModal();
+        }
+    });
     ////////////
 
-    function generate() {
-        console.log('generate');
-        $scope.details = true;
+    function openModal() {
+        console.log('openModal');
+        var modalInstance = $modal.open({
+          animation: true,
+          ariaLabelledBy: 'modal-title-bottom',
+          ariaDescribedBy: 'modal-body-bottom',
+          templateUrl: 'app/main/main.modal.html',
+          size: 'sm',
+          controller: function($scope) {
+            $scope.name = 'bottom';
+          }
+        });
+        modalInstance.result.then(function () {
+        }, function () {
+            $scope.details = true
+        console.log('$scope.details', $scope.details);
+        });
     }
 
   });

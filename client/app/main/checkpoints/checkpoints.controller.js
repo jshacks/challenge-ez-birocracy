@@ -17,5 +17,4 @@ angular.module('jsHaksApp')
       $scope.showSpinner = true;
     }, 800);
 
-
   });
