@@ -10,11 +10,11 @@ var RecordsSchema = new Schema({
   name: String,
   label: String,
   documents: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Documents'
-      }
-    ],
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Documents'
+    }
+  ],
   steps: [
     {
       type: mongoose.Schema.Types.ObjectId,

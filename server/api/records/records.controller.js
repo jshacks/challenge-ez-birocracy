@@ -4,7 +4,7 @@ var _ = require('lodash');
 var Records = require('./records.model');
 
 // Get list of records
-exports.index = function(req, res) {
+exports.index = function (req, res) {
   Records.find()
     .populate('documents')
     .populate('documents.location')
@@ -19,43 +19,63 @@ exports.index = function(req, res) {
 };
 
 // Get a single records
-exports.show = function(req, res) {
+exports.show = function (req, res) {
   Records.findById(req.params.id, function (err, records) {
-    if(err) { return handleError(res, err); }
-    if(!records) { return res.send(404); }
+    if (err) {
+      return handleError(res, err);
+    }
+    if (!records) {
+      return res.send(404);
+    }
     return res.json(records);
   });
 };
 
 // Creates a new records in the DB.
-exports.create = function(req, res) {
-  Records.create(req.body, function(err, records) {
-    if(err) { return handleError(res, err); }
+exports.create = function (req, res) {
+  Records.create(req.body, function (err, records) {
+    if (err) {
+      return handleError(res, err);
+    }
     return res.json(201, records);
   });
 };
 
 // Updates an existing records in the DB.
-exports.update = function(req, res) {
-  if(req.body._id) { delete req.body._id; }
+exports.update = function (req, res) {
+  if (req.body._id) {
+    delete req.body._id;
+  }
   Records.findById(req.params.id, function (err, records) {
-    if (err) { return handleError(res, err); }
-    if(!records) { return res.send(404); }
+    if (err) {
+      return handleError(res, err);
+    }
+    if (!records) {
+      return res.send(404);
+    }
     var updated = _.merge(records, req.body);
     updated.save(function (err) {
-      if (err) { return handleError(res, err); }
+      if (err) {
+        return handleError(res, err);
+      }
       return res.json(200, records);
     });
   });
 };
 
 // Deletes a records from the DB.
-exports.destroy = function(req, res) {
+exports.destroy = function (req, res) {
   Records.findById(req.params.id, function (err, records) {
-    if(err) { return handleError(res, err); }
-    if(!records) { return res.send(404); }
-    records.remove(function(err) {
-      if(err) { return handleError(res, err); }
+    if (err) {
+      return handleError(res, err);
+    }
+    if (!records) {
+      return res.send(404);
+    }
+    records.remove(function (err) {
+      if (err) {
+        return handleError(res, err);
+      }
       return res.send(204);
     });
   });
