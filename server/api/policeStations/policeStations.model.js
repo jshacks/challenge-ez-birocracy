@@ -1,12 +1,15 @@
 'use strict';
 
 var mongoose = require('mongoose'),
-    Schema = mongoose.Schema;
+  Schema = mongoose.Schema;
 
 var PoliceStationsSchema = new Schema({
   name: String,
-  info: String,
-  active: Boolean
+  address: String,
+  location: {
+    lat: Number,
+    lng: Number
+  }
 });
 
 module.exports = mongoose.model('PoliceStations', PoliceStationsSchema);
